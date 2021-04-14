@@ -60,6 +60,28 @@ public class RegistroController {
 		return clienteobj;
 	}
 	
-	
+	@PostMapping("/registroultimo")
+	@CrossOrigin(origins ="*")
+	public Usuario registroUltimo(@RequestBody Usuario usuario) {
+		
+		System.out.println("Recibiendo "+ usuario.getUsuario() + " "+ usuario.getUltimoingreso());
+		
+		Usuario usuario1 = new Usuario();
+		
+		usuario1 = service.fetchClienteByUsuario(usuario.getUsuario());
+		
+		if(usuario1.getUsuario()==null) {
+			
+			System.out.println("No se encontró usuario");
+			
+		}else {
+			
+			System.out.println(usuario1.getId() + " "+ usuario1.getUltimoingreso());
+			
+			usuario1.setUltimoingreso(usuario1.getUltimoingreso());
+			
+		}
+		return service.saveCliente(usuario1);
+	}
 
 }

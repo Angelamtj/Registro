@@ -15,6 +15,7 @@ public class RegistroService {
 	public Usuario saveCliente(Usuario usuario) {
 		
 		return repo.save(usuario);
+	
 	}
 
 	public Usuario fetchClienteByEmail(String email) {
@@ -26,5 +27,12 @@ public class RegistroService {
 		
 		return repo.findByEmailAndPassword(email, password);
 	}
+	
+	public Usuario fetchClienteByUsuario(String usuario) {
+		
+		return repo.findByUsuario(usuario);
+	}
+	
+	
 
 }

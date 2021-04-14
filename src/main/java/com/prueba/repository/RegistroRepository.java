@@ -12,4 +12,6 @@ public interface RegistroRepository extends JpaRepository<Usuario,Integer>{
 	
 	public Usuario findByEmailAndPassword(String email, String password);
 
+	public Usuario findByUsuario(String usuario);
+
 }

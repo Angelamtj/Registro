@@ -39,23 +39,26 @@ public class Usuario{
 	
 	@Column(name = "Fecha")
 	private String fecha;
+	
+	@Column(name = "ultimoingreso")
+	private String ultimoingreso;
+
+
+	public String getUltimoingreso() {
+		return ultimoingreso;
+	}
+
+
+	public void setUltimoingreso(String ultimoingreso) {
+		this.ultimoingreso = ultimoingreso;
+	}
+
 
 	public Usuario() {
 		
 	}
 
-	
-	public Usuario(String nombre, String apellido, char genero, String email, String usuario, String password,
-			String fecha) {
-		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.genero = genero;
-		this.email = email;
-		this.usuario = usuario;
-		this.password = password;
-		this.fecha = fecha;
-	}
+
 
 
 	public int getId() {
