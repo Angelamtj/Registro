@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,21 +47,27 @@ public class RegistroController {
 		String temppass = usuario.getPassword();
 		
 		Usuario clienteobj = null;
+		Usuario clienteobjExiste = null;
 		
 		if(tempEmail != null && temppass != null) {
 			
-			clienteobj = service.fetchClienteByEmailAndPassword(tempEmail, temppass);
+			clienteobjExiste = service.fetchClienteByEmail(tempEmail);
+			if(clienteobjExiste != null) {
+				clienteobj = service.fetchClienteByEmailAndPassword(tempEmail, temppass);
+			}else {
+				throw new Exception("Usuario no existe");
+			}
 		}
 		
 		if(clienteobj == null) {
 			
-			throw new Exception("Datos incorrectos");
+			throw new Exception("Credenciales incorrectas");
 		}
 		
 		return clienteobj;
 	}
 	
-	@PostMapping("/registroultimo")
+	@PutMapping("/registroultimo")
 	@CrossOrigin(origins ="*")
 	public Usuario registroUltimo(@RequestBody Usuario usuario) {
 		
@@ -68,17 +75,17 @@ public class RegistroController {
 		
 		Usuario usuario1 = new Usuario();
 		
+		
 		usuario1 = service.fetchClienteByUsuario(usuario.getUsuario());
 		
 		if(usuario1.getUsuario()==null) {
 			
-			System.out.println("No se encontró usuario");
+			System.out.println("No se encontrÃ³ usuario");
 			
 		}else {
 			
-			System.out.println(usuario1.getId() + " "+ usuario1.getUltimoingreso());
-			
-			usuario1.setUltimoingreso(usuario1.getUltimoingreso());
+			usuario1.setUltimoingreso(usuario.getUltimoingreso());
+		
 			
 		}
 		return service.saveCliente(usuario1);

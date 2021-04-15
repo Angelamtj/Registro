@@ -42,8 +42,37 @@ public class Usuario{
 	
 	@Column(name = "ultimoingreso")
 	private String ultimoingreso;
+	
+	@Column(name = "cuentabloqueada")
+	private String cuentabloqueada;
+	
+	//@Column(name = "intentosfallidos")
+	//private int intentosfallidos;
+
+	public String getCuentabloqueada() {
+		return cuentabloqueada;
+	}
+
+	public void setCuentabloqueada(String cuentabloqueada) {
+		this.cuentabloqueada = cuentabloqueada;
+	}
+
+	public String getUltimointentofallido() {
+		return ultimointentofallido;
+	}
+
+	public void setUltimointentofallido(String ultimointentofallido) {
+		this.ultimointentofallido = ultimointentofallido;
+	}
+
+	@Column(name = "ultimointentofallido")
+	private String ultimointentofallido;
 
 
+	public Usuario() {
+		
+	}
+	
 	public String getUltimoingreso() {
 		return ultimoingreso;
 	}
@@ -52,14 +81,6 @@ public class Usuario{
 	public void setUltimoingreso(String ultimoingreso) {
 		this.ultimoingreso = ultimoingreso;
 	}
-
-
-	public Usuario() {
-		
-	}
-
-
-
 
 	public int getId() {
 		return id;
@@ -124,5 +145,17 @@ public class Usuario{
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
+
+
+	/*public Integer getIntentosfallidos() {
+		return intentosfallidos;
+	}
+
+	public void setIntentosfallidos(int intentosfallidos) {
+		this.intentosfallidos = intentosfallidos;
+	}*/
+
+	
+	
 	
 }
