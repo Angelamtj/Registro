@@ -42,10 +42,10 @@ public class Usuario{
 	@Column(name = "ultimoingreso")
 	private String ultimoingreso;
 	
-	@Column(name = "cuentanobloqueada")
+	@Column(name = "cuentanobloqueada", nullable = false, columnDefinition = "TINYINT(4)")
 	private boolean cuentanobloqueada;
 	
-	@Column(name = "intentosfallidos" )
+	@Column(name = "intentosfallidos", nullable = false, columnDefinition = "TINYINT(4)" )
 	private int intentosfallidos;
 	
 	@Column(name = "tiempobloqueado")
