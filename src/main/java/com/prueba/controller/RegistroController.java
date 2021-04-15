@@ -9,7 +9,6 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -66,7 +65,7 @@ public class RegistroController {
 					clienteobj = service.fetchClienteByEmailAndPassword(tempEmail, temppass);
 					
 				}else {
-					//if(clienteobjExiste.getTiempobloqueado() != null) {
+					
 						String horaActual = new Date().toString();
 						Date horaBloqueo2 = clienteobjExiste.getTiempobloqueado();
 						Calendar calendar = Calendar.getInstance();
@@ -87,7 +86,7 @@ public class RegistroController {
 					    }
 					    
 					    System.out.println("esto es: "+ restaFechas);
-					//}
+					
 					
 					throw new Exception("Usuario bloqueado");
 				}
@@ -102,11 +101,11 @@ public class RegistroController {
 			
 			int intentos = clienteobjExiste.getIntentosfallidos();
 			
-			if(intentos < 3){
+			if(intentos < 2){
 				
 				clienteobjExiste.setIntentosfallidos(intentos+1);
 				
-			}else if(intentos == 3) {
+			}else if(intentos == 2) {
 				
 				clienteobjExiste.setCuentanobloqueada(false);
 				clienteobjExiste.setTiempobloqueado(new Date());
